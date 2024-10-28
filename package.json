@@ -1,0 +1,22 @@
+{
+  "name": "alluuid",
+  "version": "1.0.0",
+  "description": "AllUUID is a versatile JavaScript library for generating universally unique identifiers (UUIDs) and GUIDs. It supports multiple versions of UUIDs, including version 1 (time-based), version 4 (random), and version 7 (timestamp-based). This tool is ideal for developers looking to create unique identifiers for databases, session tokens, or any other use cases where uniqueness is critical.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krishnatadi/alluuid.git"
+  },
+  "keywords": [
+    "UUID", "GUID", "Unique", "Identifier", "UUID", "Generator", "Version 1 UUID", "Version 4 UUID", "Version 7 UUID", "Nil UUID", "Custom UUID", "Email UUID", "JavaScript", "Node.js", "Library", "Random", "UUID", "Time-based", "UUID", "Universally", "Unique", "Identifier", "Unique", "ID", "Generator", "Cryptographically", "Secure", "UUIDs", "Lightweight", "UUID", "Library", "npm", "Package"
+  ],
+  "author": "krishna tadi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krishnatadi/alluuid/issues"
+  },
+  "homepage": "https://github.com/krishnatadi/alluuid#readme"
+}
