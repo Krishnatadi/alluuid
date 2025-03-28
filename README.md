@@ -1,15 +1,11 @@
+![NPM Version](https://img.shields.io/npm/v/alluuid)
+![GitHub Issues](https://img.shields.io/github/issues/krishnatadi/alluuid)
+
 # AllUUID
 
 `AllUUID` is a versatile JavaScript library for generating universally unique identifiers (UUIDs) and GUIDs. It supports multiple versions of UUIDs, including version 1 (time-based), version 4 (random), and version 7 (timestamp-based). This tool is ideal for developers looking to create unique identifiers for databases, session tokens, or any other use cases where uniqueness is critical.
 
-
-## Table of Contents
-
-* [Installation](#installation)
-* [Features](#features)
-* [Methods Overview](#methods)
-* [Examples](#examples)
-
+This library can be used both in **Node.js** and **browser** environments with **TypeScript** support.
 
 ## Installation
 
@@ -25,15 +21,20 @@ the [`npm init` command](https://docs.npmjs.com/creating-a-package-json-file).
 Installation is done using the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
-To install `saltyhash`, use npm:
-```console
+
+To install `alluuid`, use npm or yarn:
+```bash
 $ npm install alluuid
+```
+or
+```bash
+yarn add alluuid
 ```
 
 
 ## Features
 
-- **Multiple UUID Versions**: Generate UUIDs of version 1, 4, and 7.
+- **Multiple UUID Versions**: Generate UUIDs of version 1, 4 and 7.
 - **GUID Generation**: Create standard GUIDs.
 - **Batch Generation**: Generate multiple UUIDs in one call.
 - **Custom UUID Generation**: Create UUIDs based on custom object details.
@@ -42,14 +43,32 @@ $ npm install alluuid
 
 
 
+## Use Cases
+1. **Unique Identifiers for User Sessions**  
+   Use UUIDs to uniquely identify user sessions or requests in a web application.
+
+2. **Database Primary Keys**  
+   Generate UUIDs for database primary keys, ensuring uniqueness across multiple systems or services.
+
+3. **Distributed Systems**  
+   In distributed systems, use UUIDs to uniquely identify resources across different machines and services.
+
+4. **File/Document Naming**  
+   Generate unique names for files or documents stored in a system, ensuring no collisions occur.
+
+5. **Transaction IDs**  
+   Assign unique transaction IDs for financial or business operations that can be tracked across systems.
+
+
+
 ## Methods Overview
 
 | Method                           | Explanation                                                                                                                                                   |
 |----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `generateGuid()`                 | Generates a globally unique identifier (GUID) in the standard format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx). This method uses random values to create the GUID. |
-| `version1()`                     | Generates a Version 1 UUID, which is time-based and includes the timestamp and the MAC address of the generating node.                                       |
-| `version4()`                     | Generates a Version 4 UUID, which is randomly generated and has a high probability of uniqueness. This version is often used when a non-deterministic identifier is needed. |
-| `version7()`                     | Generates a Version 7 UUID, which is a timestamp-based UUID that allows for ordering based on the creation time. This version is useful in databases that require ordering of entries. |
+| `uuidv1()`                     | Generates a Version 1 UUID, which is time-based and includes the timestamp and the MAC address of the generating node.                                       |
+| `uuidv4()`                     | Generates a Version 4 UUID, which is randomly generated and has a high probability of uniqueness. This version is often used when a non-deterministic identifier is needed. |
+| `uuidv7()`                     | Generates a Version 7 UUID, which is a timestamp-based UUID that allows for ordering based on the creation time. This version is useful in databases that require ordering of entries. |
 | `generateNilUUID()`                      | Returns a nil UUID (00000000-0000-0000-0000-000000000000), which represents the absence of a UUID. This is useful in cases where a UUID is required but not yet generated. |
 | `generateMultipleUUIDs(count, version)` | Generates an array of UUIDs of a specified version (1, 4, or 7). The count parameter specifies how many UUIDs to generate.                                |
 | `generateCustomUUID(details)`    | Generates a custom UUID based on provided details (like name, ID). This method allows for unique identification tied to specific attributes of an object.    |
@@ -57,15 +76,16 @@ $ npm install alluuid
 
 
 
-## Examples
+## Node.js Usage
+To use alluuid in a Node.js application, import the library and use the various UUID generation methods.
 ### 1. Generate UUIDs
-#### 1.1 Version 1 UUID
+#### 1.1 Version 1 UUID (Timestamp-based UUID)
 This code snippet imports the uniqueIDGenerator from the alluuid package and calls the version1() method. Version 1 UUIDs are generated based on the current timestamp and the MAC address of the computer (or a random number if the MAC address cannot be determined). As a result, the generated UUID will be unique across space and time.
 ```javascript
 const { uniqueIDGenerator } = require('alluuid');
 
 // Generate a Version 1 UUID
-const uuidV1 = uniqueIDGenerator.version1();
+const uuidV1 = uniqueIDGenerator.uuidv1();
 console.log("Generated Version 1 UUID:", uuidV1);
 
 /*
@@ -74,13 +94,13 @@ Generated Version 1 UUID: 123e4567-e89b-12d3-a456-426614174000
 */
 ```
 
-#### 1.2 Version 4 UUID
+#### 1.2 Version 4 UUID (Random UUID)
 This code generates a Version 4 UUID using random numbers. It utilizes a secure random number generator to produce a UUID that is statistically unique. This is ideal for cases where no specific ordering or source of the UUID is required, as the randomness ensures that each UUID generated will not repeat.
 ```javascript
 const { uniqueIDGenerator } = require('alluuid');
 
 // Generate a Version 4 UUID
-const uuidV4 = uniqueIDGenerator.version4();
+const uuidV4 = uniqueIDGenerator.uuidv4();
 console.log("Generated Version 4 UUID:", uuidV4);
 
 /*
@@ -90,13 +110,13 @@ Generated Version 4 UUID: ad08bfa4-b9d6-9685-bee8-940db039f061
 ```
 
 
-#### 1.3 Version 7 UUID
+#### 1.3 Version 7 UUID (Unix Timestamp-based UUID)
 In this snippet, a Version 7 UUID is generated. This type of UUID is based on time but utilizes a different encoding scheme than Version 1. It is intended for applications where both a timestamp and a unique identifier are needed, allowing sorting and uniqueness based on time of creation.
 ```javascript
 const { uniqueIDGenerator } = require('alluuid');
 
 // Generate a Version 7 UUID
-const uuidV7 = uniqueIDGenerator.version7();
+const uuidV7 = uniqueIDGenerator.uuidv7();
 console.log("Generated Version 7 UUID:", uuidV7);
 
 /*output: 
@@ -205,3 +225,37 @@ Generated GUID: a12fef4b-4b2b-4429-8e47-bf38ebf0b4f3
 
 ```
 
+
+## Browser Usage
+To use the library directly in the browser, you need to include the script tag that references the CDN.
+
+The alluuid library is hosted on jsDelivr CDN. Below is an example of how to include the CDN for UUID Version 4:
+
+For UUID Version 4 (Randomly generated UUID):
+```javascript
+<script src="https://cdn.jsdelivr.net/npm/alluuid@1.0.2/alluuid/uuidv4.js"></script>
+```
+You can add the above <script> tag to your HTML file to use version4() for generating UUIDs.
+
+> Note: To use other versions like version1(), version7(), and so on, you can refer to the respective CDN paths and include them as separate script tags.
+
+You can find the latest version of **alluuid** CDN by visiting this link:
+
+[https://www.jsdelivr.com/package/npm/alluuid](https://www.jsdelivr.com/package/npm/alluuid)
+
+Once you add the correct script tag(s) to your HTML, you can start using the **alluuid** functions directly in the browser.
+
+
+
+## Community and Ecosystem
+
+By using **ALLUUID**, you are joining a growing community of developers who are passionate about secure passwords. We encourage you to share your experiences, ideas, and feedback on GitHub Discussions or any community platform of your choice.
+
+We welcome contributions! If you’d like to contribute, Share use cases, submit an issue or a pull request on GitHub.
+
+We'd love to hear from you and see how you're using **ALLUUID** in your projects!
+Contributing
+
+
+## Issues and Feedback
+For issues, feedback, and feature requests, please open an issue on our [GitHub Issues page](http://github.com/krishnatadi/alluuid/issues). We actively monitor and respond to community feedback.

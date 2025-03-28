@@ -1,6 +1,6 @@
-const version1 = require('./version1'); // Placeholder for Version 1 UUID
-const version4 = require('./version4'); // Version 4 UUID generation
-const version7 = require('./version7'); // Placeholder for Version 7 UUID
+const version1 = require('./uuidv1'); // Placeholder for Version 1 UUID
+const version4 = require('./uuidv4'); // Version 4 UUID generation
+const version7 = require('./uuidv7'); // Placeholder for Version 7 UUID
 
 function generateMultipleUUIDs(version, count) {
     if (count < 2 || count > 50) {
